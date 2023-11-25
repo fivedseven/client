@@ -1,0 +1,38 @@
+::ng-deep .p-card {
+  .p-card-body {
+    padding: 0;
+
+    .p-card-content {
+      padding: 0;
+    }
+
+    .p-card-footer {
+      padding: 0;
+    }
+  }
+}
+
+.container {
+  animation: fadeInAnimation 0.8s ease;
+  grid-row-end: span 10;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+
+  &:hover {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+    margin-top: -20px;
+    padding-bottom: 20px;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 0;
+    padding-bottom: 0;
+  }
+}

@@ -1,0 +1,47 @@
+<div class="flex align-items-center justify-content-between pb-3">
+  <h3 class="pr-3">List</h3>
+
+  <div class="flex flex-wrap justify-content-end align-items-center gap-3">
+    <button class="text-xs" label="Upload image" pButton routerLink="../add">
+      <i class="pi pi-cloud-upload pr-2"></i>
+    </button>
+
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input
+        [formControl]="searchInput"
+        class="p-inputtext-sm w-18rem"
+        pInputText
+        placeholder="Search by image tag..."
+        type="text"/>
+    </span>
+  </div>
+</div>
+
+<div
+  class="flex"
+  *ngIf="!loading && imgList.length"
+  [ngClass]="{ 'justify-content-center': imgList.length > 1 }">
+  <ngx-masonry [options]="masonryOptions">
+    <div ngxMasonryItem class="masonry-item" *ngFor="let image of imgList">
+      <app-item-card
+        (deleteImage)="onDeleteImage($event)"
+        (downloadImage)="onDownloadImage($event)"
+        [image]="image"></app-item-card>
+    </div>
+  </ngx-masonry>
+</div>
+
+<div
+  *ngIf="!loading && !imgList.length"
+  class="flex flex-column justify-content-center align-items-center py-4">
+  <i class="pi pi-images image-icon"></i>
+  <p class="text-center">No images found</p>
+
+</div>
+
+<div
+  *ngIf="loading"
+  class="flex justify-content-center align-items-center py-8">
+  <i class="pi pi-spin pi-spinner" style="font-size: 3rem"></i>
+</div>

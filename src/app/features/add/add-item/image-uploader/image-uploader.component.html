@@ -1,0 +1,11 @@
+<div class="container">
+  <p-fileUpload
+    (onUpload)="fileUploaded.emit($event)"
+    [auto]="true"
+    [maxFileSize]="maxFileSize"
+    accept="image/*"
+    chooseLabel="Choose image"
+    mode="basic"
+    name="demo[]"
+    url="https://www.primefaces.org/cdn/api/upload.php"></p-fileUpload>
+</div>

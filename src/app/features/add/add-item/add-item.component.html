@@ -1,0 +1,53 @@
+<div class="flex align-items-center justify-content-between">
+  <h3>Upload Image</h3>
+
+  <div class="flex gap-2">
+    <button
+      class="text-xs p-button-secondary"
+      label="Return to list"
+      pButton
+      routerLink="../list">
+      <i class="pi pi-arrow-circle-left pr-2"></i>
+    </button>
+
+    <button
+      *ngIf="addItemFormService.form.get('file')?.value"
+      class="text-xs p-button-danger"
+      label="Remove image"
+      (click)="onRemoveFile()"
+      pButton>
+      <i class="pi pi-times pr-2"></i>
+    </button>
+
+    <button
+      (click)="save()"
+      [disabled]="disabled"
+      class="text-xs p-button-success"
+      label="Save image"
+      pButton>
+      <i class="pi pi-check pr-2"></i>
+    </button>
+  </div>
+</div>
+
+<div class="container p-5">
+  <div class="grid">
+    <div class="col-12 lg:col-7 pr-3">
+      <div class="flex justify-content-center align-items-center h-full">
+        <app-image-uploader
+          (fileUploaded)="handleUploadedFile($event)"
+          *ngIf="
+            !addItemFormService.form.get('file')?.value
+          "></app-image-uploader>
+        <app-image-viewer
+          *ngIf="addItemFormService.form.get('file')?.value"
+          [file]="
+            addItemFormService.form.get('file')?.value
+          "></app-image-viewer>
+      </div>
+    </div>
+    <div class="col-12 lg:col-5 py-3">
+      <app-form [form]="addItemFormService.form"></app-form>
+    </div>
+  </div>
+</div>
